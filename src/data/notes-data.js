@@ -106,4 +106,12 @@ const notesData = [
   },
 ];
 
-console.log(notesData);
+class _notesData {
+  static getAll() {
+    return notesData;
+  }
+  static addNote(note) {
+    notesData.push(note);
+  }
+}
+export default _notesData;
