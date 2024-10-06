@@ -26,30 +26,32 @@
     <main>
       <div class="add-notes">
         <h2>Add New Note</h2>
-        <br />
+
         <form class="form-group">
           <div class="input-wrapper">
             <input placeholder="Note Title" class="title" name="title" />
           </div>
-          <br />
           <div class="body-wrapper">
-            <textarea name="body" id="body" placeholder="Note Body"></textarea>
+            <textarea
+              class="body"
+              name="body"
+              id="body"
+              placeholder="Note Body"
+            ></textarea>
           </div>
-          <br />
-          <button type="submit">
+          <button type="submit" class="button-add-notes">
             <i class="fa-solid fa-plus"></i> New Note
           </button>
         </form>
       </div>
 
       <div class="wrapper-notes">
-        <!-- Active Notes Section -->
         <div class="active-notes">
           <div class="active-notes-head">
             <h2>Active Notes</h2>
           </div>
           <div class="active-notes-body">
-            <!-- <div class="note-card">
+            <div class="note-card">
               <h2>judul</h2>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -57,7 +59,16 @@
                 sint architecto tempora praesentium ut obcaecati id quas?
                 Blanditiis esse, eveniet accusamus distinctio quibusdam fugiat.
               </p>
-            </div> -->
+              <div class="button-container">
+                <button class="button-change-status">Archive</button>
+                <button class="button-edit">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+                <button class="button-delete">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
