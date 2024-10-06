@@ -20,11 +20,7 @@ main {
 }
 
 header {
-  width: 100%;
   background-color: #3f7785;
-  color: #f7f7f7;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 
 .add-notes {
@@ -151,7 +147,7 @@ button:active {
   min-height: 100px;
   max-height: 100px;
   margin-bottom: 6px;
-  text-align: justify;
+  text-align: left;
   overflow: auto;
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -185,10 +181,7 @@ button:active {
 }
 
 footer {
-  text-align: center;
-  padding: 2px;
   background-color: #3f7785;
-  color: #f7f7f7;
 }
 
 /* Media Query for mobile */
