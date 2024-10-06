@@ -4,6 +4,7 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
 html,
 body {
   height: 100%;
@@ -33,12 +34,11 @@ header {
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
-  border-radius: 15px;
   font-size: large;
   margin-top: 2.5em;
   padding: 2em;
   box-shadow: 1px 1px 10px 1px #3f7785;
-  border-radius: 20px;
+  border-radius: 10px;
   color: #2c5c68;
 }
 .title {
@@ -64,7 +64,12 @@ header {
   border: 2px solid #2c5c68;
 }
 
-.button-add-notes {
+::placeholder {
+  color: rgba(44, 92, 104, 0.6);
+  font-style: italic;
+}
+
+button {
   border-radius: 10px;
   background-color: #3f7785;
   color: #f7f7f7;
@@ -73,9 +78,14 @@ header {
   transition: ease-in-out 0.2s;
 }
 
-.button-add-notes:hover {
+button:hover {
   cursor: pointer;
   background-color: #2c5c68;
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
 }
 
 .wrapper-notes {
@@ -108,17 +118,6 @@ header {
   margin-top: 20px;
 }
 
-.note-card {
-  min-height: 100px;
-  background-color: #f7f7f7;
-  padding: 20px;
-  width: 90%;
-  border-radius: 10px;
-  box-shadow: 1px 1px 10px 1px #3f7785;
-  text-align: center;
-  border: 1px solid #3f7785;
-}
-
 .active-notes-head,
 .archived-notes-head {
   width: 100%;
@@ -128,11 +127,62 @@ header {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  margin: 10px auto;
+  margin: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.note-card {
+  background-color: #f7f7f7;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px #3f7785;
+  text-align: center;
+  border: 1px solid #3f7785;
+}
+
+.note-card h3 {
+  margin-bottom: 6px;
+}
+
+.note-card p {
+  min-height: 100px;
+  max-height: 100px;
+  margin-bottom: 6px;
+  text-align: justify;
+  overflow: auto;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  padding-right: 5px;
+}
+
+.note-card p::-webkit-scrollbar {
+  width: 4px;
+}
+.note-card p::-webkit-scrollbar-thumb {
+  background-color: #3f7785;
+  border-radius: 10px;
+}
+
+.note-card,
+.active-notes-head,
+.archived-notes-head {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-card:hover {
+  transform: scale(1.02);
+  box-shadow: 1px 1px 15px 2px rgba(63, 119, 133, 0.5);
+}
+
+.button-date-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
 }
 
 footer {
@@ -165,5 +215,16 @@ footer {
   .active-notes-body,
   .archived-notes-body {
     grid-template-columns: 1fr;
+  }
+
+  .add-notes,
+  .note-card {
+    padding: 15px;
+    margin: 10px auto;
+  }
+  .add-notes h2,
+  .active-notes-head h2,
+  .archived-notes-head h2 {
+    font-size: 1.5em;
   }
 }
