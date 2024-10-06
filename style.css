@@ -42,26 +42,72 @@ header {
   font-size: medium;
   padding: 8px;
   min-width: 90%;
+  max-width: 90%;
   height: 30px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: #2c5c68;
   border: 2px solid #2c5c68;
+  transition: ease-in-out 0.2s;
 }
+input:focus-visible {
+  appearance: none;
+  outline: none;
+  box-shadow: 1px 1px 10px 1px #3f7785;
+}
+/* input:invalid {
+  box-shadow: 1px 1px 10px 1px #b61940;
+} */
 
 .body {
+  max-width: 90%;
   font-size: medium;
   padding: 8px;
   min-width: 90%;
   height: 150px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 1em;
   color: #2c5c68;
   border: 2px solid #2c5c68;
+  transition: ease-in-out 0.2s;
+  overflow-y: auto;
+}
+
+textarea:focus-visible {
+  appearance: none;
+  outline: none;
+  box-shadow: 1px 1px 10px 1px #3f7785;
+}
+/* textarea:invalid {
+  box-shadow: 1px 1px 10px 1px #b61940;
+} */
+
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: #3f7785;
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background-color: #2c5c68;
+}
+
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 1px 1px 10px 1px #3f7785;
 }
 
 ::placeholder {
   color: rgba(44, 92, 104, 0.6);
   font-style: italic;
+  font-size: large;
 }
 
 button {
@@ -148,18 +194,25 @@ button:active {
   max-height: 100px;
   margin-bottom: 6px;
   text-align: left;
-  overflow: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
   padding-right: 5px;
 }
 
 .note-card p::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+}
+.note-card p::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+  border-radius: 10px;
 }
 .note-card p::-webkit-scrollbar-thumb {
   background-color: #3f7785;
   border-radius: 10px;
+}
+
+.note-card p::-webkit-scrollbar-thumb:hover {
+  background-color: #2c5c68;
 }
 
 .note-card,
