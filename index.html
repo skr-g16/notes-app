@@ -33,19 +33,28 @@
             <input
               placeholder="Note Title"
               class="title"
-              name="title"
+              type="text"
               id="title"
+              name="title"
               required
+              pattern="^(?! )[a-zA-Z0-9._ ]+$"
+              autocomplete="off"
+              aria-describedby="titleValidation"
             />
+          <p id="titleValidation" class="validation-message" aria-live="polite"></p>
           </div>
+          
           <div class="body-wrapper">
             <textarea
               class="body"
-              name="body"
-              id="body"
               placeholder="Note Body"
+              id="body"
+              name="body"
               required
+              pattern="^(?!\s)([a-zA-Z0-9._ ]+)$"
+              aria-describedby="bodyValidation"
             ></textarea>
+            <p id="bodyValidation" class="validation-message" aria-live="polite"></p>
           </div>
           <button type="submit" class="button-add-notes">
             <i class="fa-solid fa-plus"></i> New Note

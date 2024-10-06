@@ -19,6 +19,8 @@ const addNotes = () => {
       createdAT,
       false
     );
+    document.getElementById("title").value = "";
+    document.getElementById("body").value = "";
     _notesData.addNote(notesObject);
     document.dispatchEvent(new Event(RENDER_EVENT));
   }

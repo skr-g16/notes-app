@@ -24,7 +24,6 @@ header {
 }
 
 .add-notes {
-  display: block;
   text-align: center;
   max-width: 400px;
   margin: 20px auto;
@@ -36,9 +35,9 @@ header {
   border-radius: 10px;
   color: #2c5c68;
 }
+
 .title {
   margin-top: 1em;
-  margin-bottom: 1em;
   font-size: medium;
   padding: 8px;
   min-width: 90%;
@@ -49,23 +48,34 @@ header {
   border: 2px solid #2c5c68;
   transition: ease-in-out 0.2s;
 }
+
+.validation-message {
+  margin-top: 0.25rem;
+  color: red;
+  text-align: left;
+  padding: 5px 20px;
+  font-size: small;
+  margin-bottom: 20px;
+}
+
+input:focus:invalid,
+textarea:focus:invalid {
+  outline: none;
+  box-shadow: 1px 1px 10px 1px red;
+}
 input:focus-visible {
   appearance: none;
   outline: none;
   box-shadow: 1px 1px 10px 1px #3f7785;
 }
-/* input:invalid {
-  box-shadow: 1px 1px 10px 1px #b61940;
-} */
 
 .body {
-  max-width: 90%;
+  border-radius: 5px;
   font-size: medium;
   padding: 8px;
+  max-width: 90%;
   min-width: 90%;
   height: 150px;
-  border-radius: 5px;
-  margin-bottom: 1em;
   color: #2c5c68;
   border: 2px solid #2c5c68;
   transition: ease-in-out 0.2s;
@@ -77,9 +87,6 @@ textarea:focus-visible {
   outline: none;
   box-shadow: 1px 1px 10px 1px #3f7785;
 }
-/* textarea:invalid {
-  box-shadow: 1px 1px 10px 1px #b61940;
-} */
 
 textarea::-webkit-scrollbar {
   width: 8px;
@@ -109,7 +116,6 @@ textarea:focus-visible {
   font-style: italic;
   font-size: large;
 }
-
 button {
   border-radius: 10px;
   background-color: #3f7785;
