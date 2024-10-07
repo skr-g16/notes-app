@@ -8,84 +8,63 @@
 html,
 body {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
 }
 
 main {
   flex: 1;
 }
 
-header {
+header,
+footer {
   background-color: #3f7785;
 }
 
 .add-notes {
   text-align: center;
   max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  font-size: large;
-  margin-top: 2.5em;
+  margin: 2.5em auto;
   padding: 2em;
+  font-size: large;
   box-shadow: 1px 1px 10px 1px #3f7785;
   border-radius: 10px;
   color: #2c5c68;
 }
 
-.title {
-  margin-top: 1em;
-  font-size: medium;
-  padding: 8px;
-  min-width: 90%;
-  max-width: 90%;
-  height: 30px;
-  border-radius: 5px;
-  color: #2c5c68;
-  border: 2px solid #2c5c68;
-  transition: ease-in-out 0.2s;
+h2 {
+  margin-bottom: 0.5em;
 }
 
-.validation-message {
-  margin-top: 0.25rem;
-  color: red;
-  text-align: left;
-  padding: 5px 20px;
-  font-size: small;
-  margin-bottom: 20px;
+.title,
+.body {
+  font-size: medium;
+  padding: 8px;
+  width: 90%;
+  border-radius: 5px;
+  border: 2px solid #2c5c68;
+  color: #2c5c68;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: 1px 1px 10px 1px #3f7785;
 }
 
 input:focus:invalid,
 textarea:focus:invalid {
-  outline: none;
   box-shadow: 1px 1px 10px 1px red;
 }
-input:focus-visible {
-  appearance: none;
-  outline: none;
-  box-shadow: 1px 1px 10px 1px #3f7785;
-}
 
-.body {
-  border-radius: 5px;
-  font-size: medium;
-  padding: 8px;
-  max-width: 90%;
-  min-width: 90%;
+textarea {
   height: 150px;
-  color: #2c5c68;
-  border: 2px solid #2c5c68;
-  transition: ease-in-out 0.2s;
   overflow-y: auto;
-}
-
-textarea:focus-visible {
-  appearance: none;
-  outline: none;
-  box-shadow: 1px 1px 10px 1px #3f7785;
 }
 
 textarea::-webkit-scrollbar {
@@ -99,22 +78,23 @@ textarea::-webkit-scrollbar-thumb {
 
 textarea::-webkit-scrollbar-track {
   background-color: #e0e0e0;
-  border-radius: 10px;
 }
 
 textarea::-webkit-scrollbar-thumb:hover {
   background-color: #2c5c68;
 }
 
-textarea:focus-visible {
-  outline: none;
-  box-shadow: 1px 1px 10px 1px #3f7785;
+.validation-message {
+  margin: 0.2rem 0 10px;
+  opacity: 0;
+  color: red;
+  text-align: left;
+  padding: 5px 20px;
+  font-size: small;
+  transition: opacity 0.3s ease-in-out;
 }
-
-::placeholder {
-  color: rgba(44, 92, 104, 0.6);
-  font-style: italic;
-  font-size: large;
+.validation-message.visible {
+  opacity: 1;
 }
 button {
   border-radius: 10px;
@@ -122,7 +102,7 @@ button {
   color: #f7f7f7;
   padding: 10px 12px;
   border: none;
-  transition: ease-in-out 0.2s;
+  transition: background-color 0.2s ease-in-out, transform 0.2s;
 }
 
 button:hover {
@@ -142,6 +122,10 @@ button:active {
   color: #2c5c68;
   justify-items: center;
   padding: 20px;
+}
+
+::placeholder {
+  font-style: italic;
 }
 
 .divider {
@@ -166,29 +150,32 @@ button:active {
 }
 
 .active-notes-head,
+.archived-notes-head,
+.note-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.active-notes-head,
 .archived-notes-head {
-  width: 100%;
   max-width: 600px;
   background-color: #3f7785;
   color: #f7f7f7;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
   margin: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: center;
 }
 
 .note-card {
   background-color: #f7f7f7;
-  padding: 20px;
-  width: 100%;
-  border-radius: 10px;
   box-shadow: 1px 1px 10px 1px #3f7785;
-  text-align: center;
+  width: 100%;
   border: 1px solid #3f7785;
+  text-align: center;
 }
 
 .note-card h3 {
@@ -208,23 +195,14 @@ button:active {
 .note-card p::-webkit-scrollbar {
   width: 6px;
 }
-.note-card p::-webkit-scrollbar-track {
-  background-color: #e0e0e0;
-  border-radius: 10px;
-}
+
 .note-card p::-webkit-scrollbar-thumb {
   background-color: #3f7785;
   border-radius: 10px;
 }
 
-.note-card p::-webkit-scrollbar-thumb:hover {
-  background-color: #2c5c68;
-}
-
-.note-card,
-.active-notes-head,
-.archived-notes-head {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.note-card p::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
 }
 
 .note-card:hover {
@@ -233,14 +211,10 @@ button:active {
 }
 
 .button-date-container {
-  align-items: center;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   gap: 10px;
-}
-
-footer {
-  background-color: #3f7785;
 }
 
 /* Media Query for mobile */
@@ -259,6 +233,7 @@ footer {
     padding: 15px;
     max-width: 80%;
   }
+
   .note-card {
     width: 80%;
   }
@@ -273,6 +248,7 @@ footer {
     padding: 15px;
     margin: 10px auto;
   }
+
   .add-notes h2,
   .active-notes-head h2,
   .archived-notes-head h2 {

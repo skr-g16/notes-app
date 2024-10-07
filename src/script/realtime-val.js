@@ -7,20 +7,23 @@ const realTimeVal = () => {
 
   const customValidationHandler = (inputElement, validationMessage) => {
     inputElement.setCustomValidity("");
+    const connectedValidationEl = document.getElementById(
+      inputElement.getAttribute("aria-describedby")
+    );
 
     if (inputElement.validity.valueMissing) {
       inputElement.setCustomValidity("This field is required.");
-      return;
-    }
-
-    if (inputElement.value.trim() === "") {
+    } else if (inputElement.value.trim() === "") {
       inputElement.setCustomValidity("Input cannot be empty or just spaces.");
-      return;
+    } else if (inputElement.validity.patternMismatch) {
+      inputElement.setCustomValidity(validationMessage);
     }
 
-    if (inputElement.validity.patternMismatch) {
-      inputElement.setCustomValidity(validationMessage);
-      return;
+    connectedValidationEl.innerText = inputElement.validationMessage;
+    if (inputElement.validationMessage) {
+      connectedValidationEl.classList.add("visible");
+    } else {
+      connectedValidationEl.classList.remove("visible");
     }
   };
 
@@ -28,12 +31,8 @@ const realTimeVal = () => {
     inputElement.addEventListener("input", () =>
       customValidationHandler(inputElement, validationMessage)
     );
-    inputElement.addEventListener("blur", (event) => {
-      customValidationHandler(event.target, validationMessage);
-      const connectedValidationEl = document.getElementById(
-        event.target.getAttribute("aria-describedby")
-      );
-      connectedValidationEl.innerText = event.target.validationMessage;
+    inputElement.addEventListener("blur", () => {
+      customValidationHandler(inputElement, validationMessage);
     });
   };
 
