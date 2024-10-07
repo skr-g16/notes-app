@@ -136,7 +136,6 @@ const addNotes = () => {
   }
 
   document.addEventListener(RENDER_EVENT, function () {
-    console.log(_notesData.getAll());
     const activeNotes = document.getElementById("active-notes-body");
     const archivedNotes = document.getElementById("archived-notes-body");
     activeNotes.innerHTML = "";

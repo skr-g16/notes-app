@@ -36,11 +36,8 @@ const realTimeVal = () => {
     });
   };
 
-  addValidationListeners(
-    titleInput,
-    "Title cannot contain special characters."
-  );
-  addValidationListeners(bodyInput, "Body cannot contain special characters.");
+  addValidationListeners(titleInput, "");
+  addValidationListeners(bodyInput, "");
 };
 
 export default realTimeVal;
