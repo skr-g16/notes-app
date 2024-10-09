@@ -1,4 +1,4 @@
-class addNoteWithTitle extends HTMLElement {
+class sectionWithTitle extends HTMLElement {
   static get observedAttributes() {
     return ["title"];
   }
@@ -61,4 +61,4 @@ class addNoteWithTitle extends HTMLElement {
   }
 }
 
-customElements.define("section-with-title", addNoteWithTitle);
+customElements.define("section-with-title", sectionWithTitle);
