@@ -22,7 +22,12 @@ class appBar extends HTMLElement {
     width: 100%;
     color: #f7f7f7;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-    text-align: center;}
+    text-align: center;
+    }
+    header {
+    background-color: #3f7785;
+    padding: 1px;
+}
     `;
   }
 
@@ -31,7 +36,10 @@ class appBar extends HTMLElement {
     this._updateStyle();
     this._shadowRoot.appendChild(this._style);
     this._shadowRoot.innerHTML += `
-    <h1>Notes App</h1>`;
+    <header>
+      <h1>Notes App</h1>
+    </header>
+    `;
   }
 }
 

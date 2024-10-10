@@ -20,11 +20,17 @@ main {
   flex: 1;
 }
 
-header,
-footer {
-  background-color: #3f7785;
+.icon::before {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
 }
-.form-group {
+.account::before {
+  font: var(--fa-font-solid);
+  content: "\f007";
+}
+
+/* .form-group {
   box-shadow: 1px 1px 10px 1px #3f7785;
   border-radius: 10px;
   max-width: 400px;
@@ -87,6 +93,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 .validation-message.visible {
   opacity: 1;
 }
+  */
 button {
   border-radius: 10px;
   background-color: #3f7785;
@@ -113,10 +120,6 @@ button:active {
   color: #2c5c68;
   justify-items: center;
   padding: 20px;
-}
-
-::placeholder {
-  font-style: italic;
 }
 
 .active-notes,

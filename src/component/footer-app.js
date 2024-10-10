@@ -18,10 +18,14 @@ class footerApp extends HTMLElement {
 
   _updateStyle() {
     this._style.textContent = `
-    :host {
-      text-align: center;
-      color: #f7f7f7;
-      width: 100%;
+      :host {
+        text-align: center;
+        color: #f7f7f7;
+        width: 100%;
+      }
+      footer {
+        background-color: #3f7785;
+        padding: 1px; 
       }
     `;
   }
@@ -31,7 +35,10 @@ class footerApp extends HTMLElement {
     this._updateStyle();
     this._shadowRoot.appendChild(this._style);
     this._shadowRoot.innerHTML += `
-    <p>&copy; 2024 Notes App | Fahmy Anugrah</p>`;
+      <footer>
+        <p>&copy; 2024 Notes App | Fahmy Anugrah</p>
+      </footer>
+    `;
   }
 }
 customElements.define("footer-app", footerApp);

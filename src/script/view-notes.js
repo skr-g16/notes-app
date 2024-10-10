@@ -1,45 +1,7 @@
 import _notesData from "../data/notes-data.js";
 
-const addNotes = () => {
+const ViewNotes = () => {
   const RENDER_EVENT = "render-notes";
-  const submitForm = document.querySelector("form");
-  submitForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    addNote();
-  });
-  function addNote() {
-    const noteTitle = document.getElementById("title").value;
-    const noteBody = document.getElementById("body").value;
-    const generateID = generateId();
-    const createdAT = new Date().toISOString();
-    const notesObject = generateNotesObject(
-      generateID,
-      noteTitle,
-      noteBody,
-      createdAT,
-      false
-    );
-    document.getElementById("title").value = "";
-    document.getElementById("body").value = "";
-    _notesData.addNote(notesObject);
-    document.dispatchEvent(new Event(RENDER_EVENT));
-  }
-  function generateNotesObject(id, title, body, createdAt, archived) {
-    return {
-      id,
-      title,
-      body,
-      createdAt,
-      archived,
-    };
-  }
-
-  function generateId() {
-    const randomLetters = Math.random().toString(36).substring(2, 4);
-    const randomAlphanumeric = Math.random().toString(36).substring(2, 11);
-    return `notes-${randomLetters}-${randomAlphanumeric}`;
-  }
-
   function makeNewNote(noteObject) {
     const noteCard = document.createElement("div");
     noteCard.classList.add("note-card");
@@ -118,8 +80,13 @@ const addNotes = () => {
   function editNotes(notesId) {
     const notesTarget = findNotes(notesId);
     if (notesTarget == null) return;
-    document.getElementById("title").value = notesTarget.title;
-    document.getElementById("body").value = notesTarget.body;
+    const addNoteFormElement = document.querySelector("add-note-form");
+    const shadowRoot = addNoteFormElement.shadowRoot;
+
+    const titleInput = shadowRoot.getElementById("title");
+    const bodyInput = shadowRoot.getElementById("body");
+    titleInput.value = notesTarget.title;
+    bodyInput.value = notesTarget.body;
     deleteNotes(notesId);
   }
 
@@ -151,4 +118,4 @@ const addNotes = () => {
     }
   });
 };
-export default addNotes;
+export default ViewNotes;

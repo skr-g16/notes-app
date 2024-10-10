@@ -26,36 +26,8 @@
     </header>
     <main>
       <section-with-title class="add-notes" title="My Notes">
-        <form class="form-group">
-          <div class="input-wrapper">
-            <input
-              placeholder="Note Title"
-              class="title"
-              type="text"
-              id="title"
-              name="title"
-              required
-              autocomplete="off"
-              aria-describedby="titleValidation"
-            />
-          <p id="titleValidation" class="validation-message" aria-live="polite"></p>
-          </div>
-          
-          <div class="body-wrapper">
-            <textarea
-              class="body"
-              placeholder="Note Body"
-              id="body"
-              name="body"
-              required
-              aria-describedby="bodyValidation"
-            ></textarea>
-            <p id="bodyValidation" class="validation-message" aria-live="polite"></p>
-          </div>
-          <button type="submit" class="button-add-notes">
-            <i class="fa-solid fa-plus"></i> New Note
-          </button>
-        </form>
+        <div class="form-group">
+        <add-note-form></add-note-form>
       </section-with-title>
 
       <div class="wrapper-notes">
@@ -64,7 +36,7 @@
             <h2>Active Notes</h2>
           </div>
           <div class="active-notes-body" id="active-notes-body">
-
+            
           </div>
         </div>
         <divider-bar></divider-bar>
