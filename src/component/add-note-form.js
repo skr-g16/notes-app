@@ -21,16 +21,16 @@ class addNoteForm extends HTMLElement {
     this._randomAlphanumeric = Math.random().toString(36).substring(2, 11);
     return `notes-${this._randomLetters}-${this._randomAlphanumeric}`;
   }
+
   generateNotesObject(id, title, body, createdAt, archived) {
-    return {
-      id,
-      title,
-      body,
-      createdAt,
-      archived,
-    };
+    return { id, title, body, createdAt, archived };
   }
+
   _addEventListener() {
+    const titleValidationMessage =
+      this.shadowRoot.getElementById("titleValidation");
+    const bodyValidationMessage =
+      this.shadowRoot.getElementById("bodyValidation");
     this._shadowRoot.querySelector("form").addEventListener("submit", (e) => {
       e.preventDefault();
       this._title = this._shadowRoot.getElementById("title").value;
@@ -199,4 +199,3 @@ class addNoteForm extends HTMLElement {
   }
 }
 customElements.define("add-note-form", addNoteForm);
-export default addNoteForm;
