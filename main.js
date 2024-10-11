@@ -1,3 +1,4 @@
+import "./style.css";
 import addNotes from "./src/script/add-notes.js";
 import realTimeVal from "./src/script/realtime-val.js";
 import "./src/component/app-bar.js";
