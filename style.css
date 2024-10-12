@@ -87,6 +87,17 @@ textarea::-webkit-scrollbar-thumb:hover {
 .validation-message.visible {
   opacity: 1;
 }
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.fa-trash span,
+.fa-trash {
+  display: flex;
+  gap: 2px;
+  justify-items: center;
+}
 button {
   border-radius: 10px;
   background-color: #3f7785;
@@ -159,9 +170,13 @@ button:active {
 }
 
 .note-card {
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: #f7f7f7;
   box-shadow: 1px 1px 10px 1px #3f7785;
-  width: 100%;
+  max-width: 90%;
+  min-width: 90%;
+  scroll-behavior: smooth;
   border: 1px solid #3f7785;
   text-align: center;
 }

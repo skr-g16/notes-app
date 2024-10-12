@@ -1,15 +1,28 @@
 function main() {
   const baseUrl = 'https://notes-api.dicoding.dev/v2';
 
-  const getNote = () => {
+  const getAllNotes = () => {
     fetch(`${baseUrl}/notes`)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.error) {
           showResponseMessage(responseJson.message);
         } else {
-          console.log(responseJson);
-          rendelALLNote(responseJson.data);
+          renderActiveNotes(responseJson.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        showResponseMessage(error.message);
+      });
+
+    fetch(`${baseUrl}/notes/archived`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.error) {
+          showResponseMessage(responseJson.message);
+        } else {
+          renderArchivedNotes(responseJson.data);
         }
       })
       .catch((error) => {
@@ -32,10 +45,38 @@ function main() {
       .then((response) => response.json())
       .then((responseJson) => {
         showResponseMessage(responseJson.message);
-        getNote();
+        getAllNotes();
       })
       .catch((error) => {
         showResponseMessage(error);
+      });
+  };
+
+  const addtoarchive = (noteId) => {
+    fetch(`${baseUrl}/notes/${noteId}/archive`, {
+      method: 'POST',
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        showResponseMessage(responseJson.message);
+        getAllNotes();
+      })
+      .catch((error) => {
+        showResponseMessage(error.message);
+      });
+  };
+
+  const unarchiveNote = (noteId) => {
+    fetch(`${baseUrl}/notes/${noteId}/unarchive`, {
+      method: 'POST',
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        showResponseMessage(responseJson.message);
+        getAllNotes();
+      })
+      .catch((error) => {
+        showResponseMessage(error.message);
       });
   };
 
@@ -48,36 +89,11 @@ function main() {
       })
       .then((responseJson) => {
         showResponseMessage(responseJson.message);
-        getNote();
+        getAllNotes();
       })
       .catch((error) => {
         showResponseMessage(error);
       });
-  };
-
-  const rendelALLNote = (notes) => {
-    const activeNote = document.querySelector('#active-notes-body');
-    activeNote.innerHTML = '';
-    notes.forEach((note) => {
-      activeNote.innerHTML += `
-        <div class="note-card" id="${note.id}">
-          <h3>${note.title}</h3>
-          <p>${note.body}</p>
-          <div class="button-container">
-            <h5 class="date-create">${note.createdAt.split('T')[0]}</h5>
-            <button class="button-change-status">${note.archived ? 'Active' : 'Archived'}</button>
-            <button class='button-delete' id="${note.id}">Delete</button>
-          </div>
-        </div>
-      `;
-    });
-
-    activeNote.addEventListener('click', (event) => {
-      if (event.target.classList.contains('button-delete')) {
-        const noteId = event.target.id;
-        deleteNote(noteId);
-      }
-    });
   };
 
   const showResponseMessage = (message = 'Check your internet connection') => {
@@ -98,8 +114,70 @@ function main() {
       inputNoteTitle.value = ``;
       inputNoteBody.value = ``;
     });
-    getNote();
+    getAllNotes();
   });
+  const renderActiveNotes = (notes) => {
+    const activeNotesCard = document.querySelector('.active-notes-body');
+    activeNotesCard.innerHTML = '';
+    notes.forEach((note) => {
+      activeNotesCard.innerHTML += `
+      <div class="note-card" id="${note.id}">
+            <h3>${note.title}</h3>
+            <p>${note.body}</p>
+            <div class="button-container">
+              <h5 class="date-create">${note.createdAt.split('T')[0]}</h5>
+              <button class="button-change-status" dataset="active-note" id="${note.id}">Archived</button>
+              <button class='fa-solid fa-trash' dataset="button-delete" id="${note.id}"></button>
+            </div>
+          </div>
+      `;
+      const deleteButton = activeNotesCard.querySelector(
+        `#${note.id} .fa-trash`,
+      );
+      deleteButton.addEventListener('click', (e) => {
+        const noteId = e.target.id;
+        deleteNote(noteId);
+      });
+      const buttonChangeStatus = activeNotesCard.querySelector(
+        `#${note.id} .button-change-status`,
+      );
+      buttonChangeStatus.addEventListener('click', (e) => {
+        const noteId = e.target.id;
+        addtoarchive(noteId);
+      });
+    });
+  };
+  const renderArchivedNotes = (notes) => {
+    const archiveNoteCard = document.querySelector('.archived-notes-body');
+    archiveNoteCard.innerHTML = '';
+    notes.forEach((note) => {
+      archiveNoteCard.innerHTML += `
+      <div class="note-card" id="${note.id}">
+            <h3>${note.title}</h3>
+            <p>${note.body}</p>
+            <div class="button-container">
+              <h5 class="date-create">${note.createdAt.split('T')[0]}</h5>
+              <button class="button-change-status" dataset="archive-note" id="${note.id}">Active</button>
+              <button class='fa-solid fa-trash' dataset="button-delete" id="${note.id}"></button>
+            </div>
+          </div>
+      `;
+      const buttonChangeStatus = archiveNoteCard.querySelector(
+        `#${note.id} .button-change-status`,
+      );
+      buttonChangeStatus.addEventListener('click', (e) => {
+        const noteId = e.target.id;
+        unarchiveNote(noteId);
+      });
+      const deleteButton = archiveNoteCard.querySelector(
+        `#${note.id} .fa-trash`,
+      );
+      deleteButton.addEventListener('click', (e) => {
+        const noteId = e.target.id;
+        deleteNote(noteId);
+      });
+    });
+  };
 }
 
 export default main;
