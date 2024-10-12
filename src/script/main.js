@@ -81,8 +81,17 @@ function main() {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        Swal.fire('Note Archived');
-        getAllNotes();
+        const noteCard = document.querySelector(`#${noteId}.note-card`);
+        anime({
+          targets: noteCard,
+          opacity: [1, 0],
+          easing: 'easeInOutQuad',
+          duration: 500,
+          complete: () => {
+            getAllNotes();
+            noteCard.style.display = 'none';
+          },
+        });
       })
       .catch((error) => {
         showResponseMessage(error.message);
@@ -95,8 +104,17 @@ function main() {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        Swal.fire('Note Active');
-        getAllNotes();
+        const noteCard = document.querySelector(`#${noteId}.note-card`);
+        anime({
+          targets: noteCard,
+          opacity: [0, 1],
+          easing: 'easeInOutQuad',
+          duration: 500,
+          complete: () => {
+            getAllNotes();
+            noteCard.style.display = 'block';
+          },
+        });
       })
       .catch((error) => {
         showResponseMessage(error.message);
