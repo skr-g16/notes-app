@@ -7,7 +7,7 @@
     "start-dev": "webpack serve --config webpack.dev.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "skr-g16",
   "license": "ISC",
   "description": "",
   "devDependencies": {
