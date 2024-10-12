@@ -6,17 +6,15 @@ function main() {
 
   const getAllNotes = () => {
     const loadingBar = document.querySelector('.loading-bar');
-    loadingBar.style.display = 'block'; // Tampilkan loading bar
-
-    // Mulai animasi loading bar
+    loadingBar.style.display = 'block';
     anime({
       targets: loadingBar,
       width: ['0%', '100%'],
       easing: 'easeInOutQuad',
       duration: 2000,
       complete: () => {
-        loadingBar.style.display = 'none'; // Sembunyikan loading bar setelah selesai
-        loadingBar.style.width = '0%'; // Reset lebar loading bar
+        loadingBar.style.display = 'none';
+        loadingBar.style.width = '0%';
       },
     });
 
