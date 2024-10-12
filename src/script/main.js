@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 function main() {
   const baseUrl = 'https://notes-api.dicoding.dev/v2';
 
@@ -43,8 +44,13 @@ function main() {
       }),
     })
       .then((response) => response.json())
-      .then((responseJson) => {
-        showResponseMessage(responseJson.message);
+      .then(() => {
+        Swal.fire({
+          title: 'Note Created',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 900,
+        });
         getAllNotes();
       })
       .catch((error) => {
@@ -58,7 +64,7 @@ function main() {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        showResponseMessage(responseJson.message);
+        Swal.fire('Note Archived');
         getAllNotes();
       })
       .catch((error) => {
@@ -72,7 +78,7 @@ function main() {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        showResponseMessage(responseJson.message);
+        Swal.fire('Note Active');
         getAllNotes();
       })
       .catch((error) => {
@@ -81,21 +87,46 @@ function main() {
   };
 
   const deleteNote = (noteId) => {
-    fetch(`${baseUrl}/notes/${noteId}`, {
-      method: 'DELETE',
-    })
-      .then((response) => {
-        return response.json();
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
       })
-      .then((responseJson) => {
-        showResponseMessage(responseJson.message);
-        getAllNotes();
-      })
-      .catch((error) => {
-        showResponseMessage(error);
+      .then((result) => {
+        if (result.isConfirmed) {
+          fetch(`${baseUrl}/notes/${noteId}`, {
+            method: 'DELETE',
+          })
+            .then((response) => response.json())
+            .then((responseJson) => {
+              swalWithBootstrapButtons.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+              getAllNotes();
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire({
+            title: 'Cancelled',
+            text: 'Your Note is safe :)',
+            icon: 'error',
+          });
+        }
       });
   };
-
   const showResponseMessage = (message = 'Check your internet connection') => {
     alert(message);
   };
