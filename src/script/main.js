@@ -1,8 +1,25 @@
 import Swal from 'sweetalert2';
+import anime from 'animejs';
+
 function main() {
   const baseUrl = 'https://notes-api.dicoding.dev/v2';
 
   const getAllNotes = () => {
+    const loadingBar = document.querySelector('.loading-bar');
+    loadingBar.style.display = 'block'; // Tampilkan loading bar
+
+    // Mulai animasi loading bar
+    anime({
+      targets: loadingBar,
+      width: ['0%', '100%'],
+      easing: 'easeInOutQuad',
+      duration: 2000,
+      complete: () => {
+        loadingBar.style.display = 'none'; // Sembunyikan loading bar setelah selesai
+        loadingBar.style.width = '0%'; // Reset lebar loading bar
+      },
+    });
+
     fetch(`${baseUrl}/notes`)
       .then((response) => response.json())
       .then((responseJson) => {
