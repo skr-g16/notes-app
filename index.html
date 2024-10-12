@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,15 +7,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+      referrerpolicy="no-referrer" />
     <title>Notes App</title>
   </head>
   <body>
@@ -34,11 +32,13 @@
               name="title"
               required
               autocomplete="off"
-              aria-describedby="titleValidation"
-            />
-          <p id="titleValidation" class="validation-message" aria-live="polite"></p>
+              aria-describedby="titleValidation" />
+            <p
+              id="titleValidation"
+              class="validation-message"
+              aria-live="polite"></p>
           </div>
-          
+
           <div class="body-wrapper">
             <textarea
               class="body"
@@ -46,9 +46,11 @@
               id="body"
               name="body"
               required
-              aria-describedby="bodyValidation"
-            ></textarea>
-            <p id="bodyValidation" class="validation-message" aria-live="polite"></p>
+              aria-describedby="bodyValidation"></textarea>
+            <p
+              id="bodyValidation"
+              class="validation-message"
+              aria-live="polite"></p>
           </div>
           <button type="submit" class="button-add-notes" id="">
             <i class="fa-solid fa-plus"></i> New Note
@@ -56,29 +58,26 @@
         </form>
       </section-with-title>
 
-  <div class="loading-bar" style="display:none;"></div>
+      <div class="loading-bar" style="display: none"></div>
 
       <div class="wrapper-notes">
         <div class="active-notes">
           <div class="active-notes-head">
             <h2>Active Notes</h2>
           </div>
-          <div class="active-notes-body" id="active-notes-body">
-
-          </div>
+          <div class="active-notes-body" id="active-notes-body"></div>
         </div>
         <divider-bar></divider-bar>
         <div class="archived-notes">
           <div class="archived-notes-head">
             <h2>Archived Notes</h2>
           </div>
-          <div class="archived-notes-body" id="archived-notes-body">
-
-          </div>
+          <div class="archived-notes-body" id="archived-notes-body"></div>
+        </div>
       </div>
+      <footer>
+        <footer-app></footer-app>
+      </footer>
     </main>
-    <footer>
-      <footer-app></footer-app>
-    </footer>
   </body>
 </html>

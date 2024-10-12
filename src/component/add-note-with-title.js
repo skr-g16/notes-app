@@ -1,6 +1,6 @@
 class addNoteWithTitle extends HTMLElement {
   static get observedAttributes() {
-    return ["title"];
+    return ['title'];
   }
   _shadowRoot = null;
   _style = null;
@@ -8,12 +8,12 @@ class addNoteWithTitle extends HTMLElement {
 
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: "open" });
-    this._style = document.createElement("style");
+    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._style = document.createElement('style');
   }
 
   _emptyContent() {
-    this._shadowRoot.innerHTML = "";
+    this._shadowRoot.innerHTML = '';
   }
 
   connectedCallback() {
@@ -53,7 +53,7 @@ class addNoteWithTitle extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
-      case "title":
+      case 'title':
         this._needTitle = newValue;
         break;
     }
@@ -61,4 +61,4 @@ class addNoteWithTitle extends HTMLElement {
   }
 }
 
-customElements.define("section-with-title", addNoteWithTitle);
+customElements.define('section-with-title', addNoteWithTitle);

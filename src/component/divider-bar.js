@@ -4,8 +4,8 @@ class divider extends HTMLElement {
 
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: "open" });
-    this._style = document.createElement("style");
+    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._style = document.createElement('style');
   }
 
   connectedCallback() {
@@ -35,4 +35,4 @@ class divider extends HTMLElement {
   }
 }
 
-customElements.define("divider-bar", divider);
+customElements.define('divider-bar', divider);

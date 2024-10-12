@@ -4,8 +4,8 @@ class footerApp extends HTMLElement {
 
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: "open" });
-    this._style = document.createElement("style");
+    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._style = document.createElement('style');
   }
 
   connectedCallback() {
@@ -34,4 +34,4 @@ class footerApp extends HTMLElement {
     <p>&copy; 2024 Notes App | Fahmy Anugrah</p>`;
   }
 }
-customElements.define("footer-app", footerApp);
+customElements.define('footer-app', footerApp);
